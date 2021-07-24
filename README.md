@@ -11,7 +11,8 @@ Deployed with heroku; the base URL is: https://dylan-feres-jobly.herokuapp.com/
 
     https://github.com/dferes/JoblyAPI_v2.git
 
-### Install (note that you will need `npm`, `postgresql` installed globally on your machine)
+### Install 
+##### Note that you will need `npm`, `postgresql` installed globally on your machine.
 
     npm install
 
