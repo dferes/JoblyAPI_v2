@@ -75,9 +75,9 @@ Deployed with heroku; the base URL is: https://dylan-feres-jobly.herokuapp.com/
     Connection: keep-alive
     Keep-Alive: timeout=5
 
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjcwOTg4ODJ9.-XCk58h0GGsY2eTNGDavqCyyAyU2F3vbvcw9tjPo-94"
-}
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjcwOTg4ODJ9.-XCk58h0GGsY2eTNGDavqCyyAyU2F3vbvcw9tjPo-94"
+    }
 
 
 ### Authorizing a new user with username/password. Note that the username and password are from the admin seeded into the database.
