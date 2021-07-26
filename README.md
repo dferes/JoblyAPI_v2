@@ -371,7 +371,7 @@ Deployed with heroku; the base URL is: https://dylan-feres-jobly.herokuapp.com/
 
 ### Creating a new company
 
-##### Token must belong to an admin or match to the username in the user information being requested (must be the same user).
+##### Token must belong to an admin.
 
 #### Request
 
@@ -458,6 +458,7 @@ Deployed with heroku; the base URL is: https://dylan-feres-jobly.herokuapp.com/
           "logoUrl": null
         },
         ...
+      ]
     }
 
 #### Get a list of all companies matching the optional filter term: minEmployees
@@ -764,3 +765,459 @@ Deployed with heroku; the base URL is: https://dylan-feres-jobly.herokuapp.com/
       "deleted": "garcia-ray"
     }
 
+
+## /jobs
+
+### Creating a new job
+
+##### Token must belong to an admin.
+
+#### Request
+
+`POST /jobs`
+
+    http://localhost:3001/jobs
+    {
+	  "title": "Programming Sage", 
+      "salary": 500000, 
+      "equity": "0.9", 
+	  "companyHandle": "comp1"
+    }
+
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNzEwMDExNX0.pWL7LASwfKmEAM6upkax4WpUS_qWf0QflnJ93AkTxB8
+
+#### Response
+
+    HTTP/1.1 201 Created
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 101
+    ETag: W/"65-XeaRDh3wY8GZJP9OLDOTGmqyAJE"
+    Date: Sun, 25 Jul 2021 23:45:24 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "job": {
+        "id": 1401,
+        "title": "Programming Sage",
+        "salary": 500000,
+        "equity": "0.9",
+        "companyHandle": "comp1"
+      }
+    }
+
+### Get a list of all jobs
+
+##### Note that over 500 jobs are inserted into the jobs table when the database is seeded; for brevity, only a few job objects will be shown in the response from the example below.
+
+#### Request
+
+`GET /jobs`
+
+    http://localhost:3001/jobs
+
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 10191
+    ETag: W/"27cf-FFyYdsnzeZFmrnRIezA8W7Oz9js"
+    Date: Sat, 24 Jul 2021 22:35:15 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+   {
+      "jobs": [
+        {
+          "id": 1400,
+          "title": "Accommodation manager",
+          "salary": 126000,
+          "equity": null,
+          "companyHandle": "mejia-scott-ryan",
+          "companyName": "Mejia, Scott and Ryan"
+        },
+        {
+          "id": 1200,
+          "title": "Accommodation manager",
+          "salary": 126000,
+          "equity": null,
+          "companyHandle": "mejia-scott-ryan",
+          "companyName": "Mejia, Scott and Ryan"
+        },
+        {
+          "id": 1000,
+          "title": "Accommodation manager",
+          "salary": 126000,
+          "equity": null,
+          "companyHandle": "mejia-scott-ryan",
+          "companyName": "Mejia, Scott and Ryan"
+        },
+        ...
+      ]
+    }
+
+#### Get a list of all jobs matching the optional filter term: minSalary
+
+#### Request
+
+`GET /jobs`
+
+    http://localhost:3001/jobs?minSalary=200000
+
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 1687
+    ETag: W/"697-uao0Bjlvvq93+fKqLVXR4HdbL+E"
+    Date: Sun, 25 Jul 2021 23:55:51 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "jobs": [
+        {
+          "id": 1202,
+          "title": "Information officer",
+          "salary": 200000,
+          "equity": "0",
+          "companyHandle": "hall-mills",
+          "companyName": "Hall-Mills"
+        },
+        {
+          "id": 802,
+          "title": "Information officer",
+          "salary": 200000,
+          "equity": "0",
+          "companyHandle": "hall-mills",
+          "companyName": "Hall-Mills"
+        },
+        {
+          "id": 1002,
+          "title": "Information officer",
+          "salary": 200000,
+          "equity": "0",
+          "companyHandle": "hall-mills",
+          "companyName": "Hall-Mills"
+        },
+        {
+          "id": 990,
+          "title": "Operational investment banker",
+          "salary": 200000,
+          "equity": "0.022",
+          "companyHandle": "smith-llc",
+          "companyName": "Smith LLC"
+        },
+        {
+          "id": 1390,
+          "title": "Operational investment banker",
+          "salary": 200000,
+          "equity": "0.022",
+          "companyHandle": "smith-llc",
+          "companyName": "Smith LLC"
+        },
+        {
+          "id": 1190,
+          "title": "Operational investment banker",
+          "salary": 200000,
+          "equity": "0.022",
+          "companyHandle": "smith-llc",
+          "companyName": "Smith LLC"
+        },
+        {
+          "id": 1265,
+          "title": "Orthoptist",
+          "salary": 200000,
+          "equity": "0",
+          "companyHandle": "perez-miller",
+          "companyName": "Perez-Miller"
+        },
+        {
+          "id": 1065,
+          "title": "Orthoptist",
+          "salary": 200000,
+          "equity": "0",
+          "companyHandle": "perez-miller",
+          "companyName": "Perez-Miller"
+        },
+        {
+          "id": 865,
+          "title": "Orthoptist",
+          "salary": 200000,
+          "equity": "0",
+          "companyHandle": "perez-miller",
+          "companyName": "Perez-Miller"
+        },
+        {
+          "id": 1401,
+          "title": "Programming Sage",
+          "salary": 500000,
+          "equity": "0.9",
+          "companyHandle": "comp1",
+          "companyName": "Amaz-Net-oogle-acebook"
+        },
+        {
+          "id": 1367,
+          "title": "Therapist, drama",
+          "salary": 200000,
+          "equity": "0.095",
+          "companyHandle": "hall-mills",
+          "companyName": "Hall-Mills"
+        },
+        {
+          "id": 1167,
+          "title": "Therapist, drama",
+          "salary": 200000,
+          "equity": "0.095",
+          "companyHandle": "hall-mills",
+          "companyName": "Hall-Mills"
+        },
+        {
+          "id": 967,
+          "title": "Therapist, drama",
+          "salary": 200000,
+          "equity": "0.095",
+          "companyHandle": "hall-mills",
+          "companyName": "Hall-Mills"
+        }
+      ]
+    }
+
+
+#### Get a list of all jobs matching the optional filter term: hasEquity.
+
+#### Request
+
+`GET /jobs`
+   
+    http://localhost:3001/jobs?hasEquity=true
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 42577
+    ETag: W/"a651-5hJEFYMSrm/wco0U5TFfoumD/mY"
+    Date: Mon, 26 Jul 2021 04:03:01 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "jobs": [
+        {
+          "id": 1161,
+          "title": "Accountant, chartered certified",
+          "salary": 86000,
+          "equity": "0.070",
+          "companyHandle": "boyd-evans",
+          "companyName": "Boyd-Evans"
+        },
+        {
+          "id": 961,
+          "title": "Accountant, chartered certified",
+          "salary": 86000,
+          "equity": "0.070",
+          "companyHandle": "boyd-evans",
+          "companyName": "Boyd-Evans"
+        },
+        {
+          "id": 1361,
+          "title": "Accountant, chartered certified",
+          "salary": 86000,
+          "equity": "0.070",
+          "companyHandle": "boyd-evans",
+          "companyName": "Boyd-Evans"
+        },
+        ...
+      ]
+    }  
+
+#### Get a list of all jobs matching the optional filter term: title
+
+#### Request
+
+`GET /jobs`
+   
+    http://localhost:3001/jobs?title=accountant
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 869
+    ETag: W/"365-xQz3gVUBDved8JMcsGVNL4qt130"
+    Date: Mon, 26 Jul 2021 04:07:54 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "jobs": [
+        {
+          "id": 836,
+          "title": "Accountant, chartered certified",
+          "salary": 175000,
+          "equity": "0",
+          "companyHandle": "stone-stewart",
+          "companyName": "Stone-Stewart"
+        },
+        {
+          "id": 961,
+          "title": "Accountant, chartered certified",
+          "salary": 86000,
+          "equity": "0.070",
+          "companyHandle": "boyd-evans",
+          "companyName": "Boyd-Evans"
+        },
+        {
+          "id": 1036,
+          "title": "Accountant, chartered certified",
+          "salary": 175000,
+          "equity": "0",
+          "companyHandle": "stone-stewart",
+          "companyName": "Stone-Stewart"
+        },
+        {
+          "id": 1161,
+          "title": "Accountant, chartered certified",
+          "salary": 86000,
+          "equity": "0.070",
+          "companyHandle": "boyd-evans",
+          "companyName": "Boyd-Evans"
+        },
+        {
+          "id": 1236,
+          "title": "Accountant, chartered certified",
+          "salary": 175000,
+          "equity": "0",
+          "companyHandle": "stone-stewart",
+          "companyName": "Stone-Stewart"
+        },
+        {
+          "id": 1361,
+          "title": "Accountant, chartered certified",
+          "salary": 86000,
+          "equity": "0.070",
+          "companyHandle": "boyd-evans",
+          "companyName": "Boyd-Evans"
+        }
+      ]
+    }
+
+### Get a job by id
+
+#### Request
+
+`GET /jobs/:id`
+
+    http://localhost:3001/jobs/1236
+
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 353
+    ETag: W/"161-EgH/YDJNeSuMUWik9h7MhcriXjU"
+    Date: Mon, 26 Jul 2021 04:12:54 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "job": {
+        "id": 1236,
+        "title": "Accountant, chartered certified",
+        "salary": 175000,
+        "equity": "0",
+        "company": {
+        "handle": "stone-stewart",
+        "name": "Stone-Stewart",
+        "description": "Require successful family but. Traditional article late eight lose common send budget. Better opportunity law country various represent strong probably.",
+        "numEmployees": 459,
+        "logoUrl": null
+        }
+      }
+    }
+
+### Update a jobs's data
+
+##### Updatable fields include: title, salary, equity. Admin token required.
+
+#### Request
+
+`PATCH /jobs/:id`
+   
+    http://localhost:3001/jobs/1236
+
+    {
+      "title": "new title",
+      "salary": 185000,
+      "equity": "0.1875"
+    }
+
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNzEwMDExNX0.pWL7LASwfKmEAM6upkax4WpUS_qWf0QflnJ93AkTxB8
+
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 105
+    ETag: W/"69-3QLC7Flu6VUpkLn1MTDdmBGLCoM"
+    Date: Mon, 26 Jul 2021 04:19:20 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "job": {
+        "id": 1236,
+        "title": "new title",
+        "salary": 185000,
+        "equity": "0.1875",
+        "companyHandle": "stone-stewart"
+      }
+    } 
+
+### Delete a job by id
+
+##### Admin token required.
+
+#### Request
+
+`DELETE /jobs/:id`
+   
+    http://localhost:3001/jobs/1236
+
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNzEwMDExNX0.pWL7LASwfKmEAM6upkax4WpUS_qWf0QflnJ93AkTxB8
+
+
+#### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 16
+    ETag: W/"10-dYPxQRQ5os4qHkdhI8ZKwCp9lRw"
+    Date: Mon, 26 Jul 2021 04:22:34 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {
+      "deleted": 1236
+    }
